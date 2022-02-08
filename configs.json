@@ -1,0 +1,9 @@
+{
+	"Classic": {
+		"path": "$HOME/aos_wine/drive_c/Ace of Spades",
+		"wine_prefix": "$HOME/aos_wine"
+	},
+	"BetterSpades": {
+		"path": "$HOME/Desktop/BetterSpades/build/BetterSpades"
+	}
+}
