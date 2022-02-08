@@ -7,6 +7,7 @@ selected_index=0
 servers=()
 
 function display_list() {
+	clear
 	for (( i = selected_index; i<=server_length; i++ )); do
 		if [[ $i -lt $(($terminal_lines-1+selected_index)) ]]; then
 			color="\e[0m"
@@ -16,6 +17,13 @@ function display_list() {
 			echo -e "${color}${servers[$i]} \e[0m"
 		fi
 	done
+}
+
+function display_instructions() {
+	echo ""
+	echo -e "Use \e[0;31m⬆/⬇ \e[0mto go up or down in the list."
+	echo -e "Press \e[0;31mEnter \e[0mto select the server."
+	echo -e "Press \e[0;31mR \e[0mto refresh."
 }
 
 function load_list() {
@@ -87,6 +95,7 @@ function show_list {
 	while true
 	do
 		display_list
+		display_instructions
 		read -rsn1 inputo
 		if [[ $inputo == $escape_char ]]; then
 		    read -rsn2 inputo
@@ -141,7 +150,6 @@ function show_list {
 				;;
 
 			"[B")
-				clear
 				((selected_index++))
 				if [[ $selected_index -gt $server_length ]]; then
 					selected_index=0
@@ -149,11 +157,16 @@ function show_list {
 				;;
 
 			"[A")
-				clear
 				((selected_index--))
 				if [[ $selected_index -lt 0 ]]; then
 					selected_index=$((server_length))
 				fi
+				;;
+
+			"r" | "R")
+				clear
+				echo "Reloading server list... (-ω-、)"
+				load_list
 				;;
 
 			*);;
