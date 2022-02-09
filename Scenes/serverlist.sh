@@ -94,6 +94,11 @@ function display_connect_info() {
 function show_list {
 	while true
 	do
+		# stop animations or any other job
+		if [[ $(jobs) ]]; then
+			kill %1
+		fi
+
 		display_list
 		display_instructions
 		read -rsn1 inputo
@@ -165,7 +170,7 @@ function show_list {
 
 			"r" | "R")
 				clear
-				echo "Reloading server list... (-ω-、)"
+				refresh_anim &
 				load_list
 				;;
 
