@@ -9,7 +9,7 @@ servers=()
 function display_list() {
 	clear
 	for (( i = selected_index; i<=server_length; i++ )); do
-		if [[ $i -lt $(($terminal_lines-1+selected_index)) ]]; then
+		if [[ $i -lt $(($terminal_lines-5+selected_index)) ]]; then
 			color="\e[0m"
 			if [[ $selected_index == $i ]]; then
 				color="\e[0;41m"
