@@ -1,10 +1,15 @@
-jsonFile=`curl http://services.buildandshoot.com/serverlist.json | jq "sort_by(.players_current)|reverse"`
-server_length=`curl http://services.buildandshoot.com/serverlist.json | jq length`
-clear
+server_length=0
+jsonFile="{}"
 
 escape_char=$(printf "\u1b")
 selected_index=0
 servers=()
+
+function update_list() {
+	servers=()
+	jsonFile=`curl http://services.buildandshoot.com/serverlist.json | jq "sort_by(.players_current)|reverse"`
+	server_length=`curl http://services.buildandshoot.com/serverlist.json | jq length`
+}
 
 function display_list() {
 	clear
@@ -27,6 +32,8 @@ function display_instructions() {
 }
 
 function load_list() {
+	update_list
+
 	server_length=$((server_length-1))
 	for ((i=0; i<=server_length; i++))
 	do
