@@ -1,3 +1,6 @@
+# ARCHIVED
+This project got archived because everything is going to be moved to a new project (https://github.com/DryByte/aos-launcher). Thank you :D
+
 # Bash Launcher
 ## What's?
 This is a launcher made using bash script, with this you are able to switch client faster and easy, also you have access for the server list using your terminal.
